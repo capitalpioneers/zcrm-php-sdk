@@ -16,7 +16,6 @@ class ZohoOAuth {
     public static function initialize($config) {
 
         try {
-
             self::$configProperties = $config['oauth'];
 
             $oAuthParams = new ZohoOAuthParams();
@@ -27,14 +26,13 @@ class ZohoOAuth {
             ZohoOAuthClient::getInstance($oAuthParams);
 
         } catch (IOException $ioe) {
-            OAuthLogger::warn("Exception while initializing Zoho OAuth Client.. " . ioe);
-            throw ioe;
+            OAuthLogger::warn("Exception while initializing Zoho OAuth Client.. " . $ioe);
+            throw $ioe;
         }
     }
 
     public static function getConfigValue($key) {
-        $value = self::$configProperties[$key];
-        return $value;
+        return self::$configProperties[$key];
     }
 
     public static function getAllConfigs() {
@@ -98,4 +96,3 @@ class ZohoOAuth {
 
 }
 
-?>
